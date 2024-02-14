@@ -1,16 +1,19 @@
 import React, {useState} from 'react';
+import {Appearance, StatusBar, StyleSheet, SafeAreaView} from 'react-native';
 import {ApplicationProvider} from '@ui-kitten/components';
 import {mapping, light as lightTheme, dark as darkTheme} from '@eva-design/eva';
-import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import AppNavigator from './src/navigation/AppNavigation';
 import theme from './theme.json'; // Import your theme.json file
 
 function App(): React.ReactNode {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(true); // Set to true for default dark mode
+  // Get the current color scheme (light or dark)
+  const colorScheme = Appearance.getColorScheme();
+  // Set the initial state for dark mode based on the color scheme
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(colorScheme === 'dark');
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? theme['color-danger-1000'] : '#F7F9FC',
+    backgroundColor: isDarkMode ? theme['color-primary-800'] : '#F7F9FC',
   };
 
   return (
@@ -18,7 +21,7 @@ function App(): React.ReactNode {
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <NavigationContainer>
         <ApplicationProvider
-          mapping={{...mapping, ...theme}} // Merge theme with UI Kitten mapping
+          mapping={{...mapping, ...theme}}
           theme={isDarkMode ? darkTheme : lightTheme}>
           <AppNavigator />
         </ApplicationProvider>
