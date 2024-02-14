@@ -1,23 +1,28 @@
-import React, {useState} from 'react';
+// HomeScreen.tsx
+
+import React from 'react';
 import {Layout, Text, Button, useTheme} from '@ui-kitten/components';
 import {StyleSheet} from 'react-native';
 
-const HomeScreen = () => {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
-  const theme = useTheme();
+interface HomeScreenProps {
+  toggleDarkMode: () => void;
+  isDarkMode: boolean;
+}
 
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+const HomeScreen: React.FC<HomeScreenProps> = ({
+  toggleDarkMode,
+  isDarkMode,
+}) => {
+  const theme = useTheme();
 
   return (
     <Layout
       style={[
         styles.container,
         styles.centered,
-        {backgroundColor: isDarkMode ? theme['color-primary-800'] : '#F7F9FC'},
+        {backgroundColor: theme['background-basic-color-1']},
       ]}>
-      <Text category="h1" style={[{color: '#E384FF'}]}>
+      <Text category="h1" style={[{color: theme['text-basic-color']}]}>
         Welcome to Schedar!
       </Text>
       <Button onPress={toggleDarkMode}>
@@ -25,10 +30,6 @@ const HomeScreen = () => {
       </Button>
     </Layout>
   );
-};
-  
-HomeScreen.options = {
-  headerShown: false,
 };
 
 const styles = StyleSheet.create({
