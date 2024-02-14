@@ -1,17 +1,14 @@
-// App.tsx
-
 import React, {useState} from 'react';
 import {Appearance, StatusBar, StyleSheet, SafeAreaView} from 'react-native';
 import {ApplicationProvider} from '@ui-kitten/components';
 import {mapping, light as lightTheme, dark as darkTheme} from '@eva-design/eva';
 import {NavigationContainer} from '@react-navigation/native';
 import AppNavigator from './src/navigation/AppNavigation';
-import theme from './theme.json'; // Import your theme.json file
+import theme from './theme.json';
 
 function App(): JSX.Element {
-  // Get the current color scheme (light or dark)
   const colorScheme = Appearance.getColorScheme();
-  // Set the initial state for dark mode based on the color scheme
+
   const [isDarkMode, setIsDarkMode] = useState<boolean>(colorScheme === 'dark');
 
   const backgroundStyle = {
