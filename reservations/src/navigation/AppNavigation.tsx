@@ -23,15 +23,15 @@ const AppNavigator: React.FC<AppNavigatorProps> = ({
         screenOptions={{
           headerShown: false,
         }}>
-        <Stack.Screen
-          name="Home"
-          component={() => (
+        <Stack.Screen name="Home" options={{headerShown: false}}>
+          {props => (
             <HomeScreen
+              {...props}
               toggleDarkMode={toggleDarkMode}
               isDarkMode={isDarkMode}
             />
           )}
-        />
+        </Stack.Screen>
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
