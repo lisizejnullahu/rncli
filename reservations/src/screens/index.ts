@@ -1,2 +1,3 @@
 export {default as HomeScreen} from './Home/HomeScreen';
-export {default as DetailsScreen} from './Details/DetailsScreen';
+export {default as IngredientScreen} from './Ingredients/IngredientScreen';
+export {default as IngredientsDetailScreen} from './IngredientsDetails/IngredientsDetailScreen';

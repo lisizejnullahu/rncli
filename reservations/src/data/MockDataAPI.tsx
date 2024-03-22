@@ -1,22 +1,19 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { recipes, categories, ingredients } from './dataArrays';
+import {Text} from 'react-native';
+import {recipes, categories, ingredients} from './dataArrays';
 
-// Define the Recipe type based on the structure of your recipes data
+
 interface Recipe {
   recipeId: number;
   title: string;
   categoryId: number;
-  ingredients: [number, number][]; // Assuming ingredients are represented as tuples of [ingredientId, quantity]
-  // Add other properties as needed
+  ingredients: [number, number][]; ]
 }
 
-// Define the Ingredient type based on the structure of your ingredients data
 interface Ingredient {
   ingredientId: number;
   name: string;
   photo_url: string;
-  // Add other properties as needed
 }
 
 export function getCategoryById(categoryId: number) {
@@ -91,12 +88,12 @@ export function getNumberOfRecipes(categoryId: number) {
   return count;
 }
 
-export function getAllIngredients(idArray: number[][]) {
-  const ingredientsArray: Array<[Ingredient, number]> = []; // Specify type as Array<[Ingredient, number]>
+export function getAllIngredients(idArray: number[][]): Ingredient[] {
+  const ingredientsArray: Ingredient[] = [];
   idArray.map(index => {
     ingredients.map(data => {
       if (data.ingredientId === index[0]) {
-        ingredientsArray.push([data, index[1]]);
+        ingredientsArray.push(data);
       }
     });
   });
