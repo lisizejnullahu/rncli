@@ -1,9 +1,9 @@
-import React, { useLayoutEffect } from "react";
-import { FlatList, Text, View, Image, TouchableHighlight } from "react-native";
-import styles from "./styles";
-import { categories } from "../../data/dataArrays";
-import { getNumberOfRecipes } from "../../data/MockDataAPI";
-import MenuImage from "../../components/MenuImage/MenuImage";
+import React, {useLayoutEffect} from 'react';
+import {FlatList, Text, View, Image, TouchableHighlight} from 'react-native';
+import styles from './styles';
+import {categories} from '../../data/dataArrays';
+import {getNumberOfRecipes} from '../../data/MockDataAPI';
+import MenuImage from '../../components/MenuImage/MenuImage';
 
 interface Category {
   id: number;
@@ -12,16 +12,16 @@ interface Category {
 }
 
 interface Props {
-  navigation: any; // Adjust type as per your navigation setup
+  navigation: any;
 }
 
-const CategoriesScreen: React.FC<Props> = ({ navigation }) => {
+const CategoriesScreen: React.FC<Props> = ({navigation}) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitleStyle: {
-        fontWeight: "bold",
-        textAlign: "center",
-        alignSelf: "center",
+        fontWeight: 'bold',
+        textAlign: 'center',
+        alignSelf: 'center',
         flex: 1,
       },
       headerLeft: () => (
@@ -38,22 +38,30 @@ const CategoriesScreen: React.FC<Props> = ({ navigation }) => {
   const onPressCategory = (item: Category) => {
     const title = item.name;
     const category = item;
-    navigation.navigate("RecipesList", { category, title });
+    navigation.navigate('RecipesList', {category, title});
   };
 
-  const renderCategory = ({ item }: { item: Category }) => (
-    <TouchableHighlight underlayColor="rgba(73,182,77,0.9)" onPress={() => onPressCategory(item)}>
+  const renderCategory = ({item}: {item: Category}) => (
+    <TouchableHighlight
+      underlayColor="rgba(73,182,77,0.9)"
+      onPress={() => onPressCategory(item)}>
       <View style={styles.categoriesItemContainer}>
-        <Image style={styles.categoriesPhoto} source={{ uri: item.photo_url }} />
+        <Image style={styles.categoriesPhoto} source={{uri: item.photo_url}} />
         <Text style={styles.categoriesName}>{item.name}</Text>
-        <Text style={styles.categoriesInfo}>{getNumberOfRecipes(item.id)} recipes</Text>
+        <Text style={styles.categoriesInfo}>
+          {getNumberOfRecipes(item.id)} recipes
+        </Text>
       </View>
     </TouchableHighlight>
   );
 
   return (
     <View>
-      <FlatList data={categories} renderItem={renderCategory} keyExtractor={(item) => `${item.id}`} />
+      <FlatList
+        data={categories}
+        renderItem={renderCategory}
+        keyExtractor={item => `${item.id}`}
+      />
     </View>
   );
 };
