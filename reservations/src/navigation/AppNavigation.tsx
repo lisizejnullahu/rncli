@@ -1,7 +1,12 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {HomeScreen, DetailsScreen} from '../screens';
+import {
+  HomeScreen,
+  IngredientScreen,
+  IngredientsDetailScreen,
+  RecipeScreen,
+} from '../screens';
 
 interface AppNavigatorProps {
   toggleDarkMode: () => void;
@@ -21,16 +26,17 @@ const AppNavigator: React.FC<AppNavigatorProps> = ({
         screenOptions={{
           headerShown: false,
         }}>
-        <Stack.Screen name="Home" options={{headerShown: false}}>
-          {props => (
-            <HomeScreen
-              {...props}
-              toggleDarkMode={toggleDarkMode}
-              isDarkMode={isDarkMode}
-            />
-          )}
-        </Stack.Screen>
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen name="IngredientScreen" component={IngredientScreen} />
+        <Stack.Screen
+          name="IngredientsDetailScreen"
+          component={IngredientsDetailScreen}
+        />
+        <Stack.Screen name="Recipe" component={RecipeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

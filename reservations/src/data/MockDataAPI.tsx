@@ -2,12 +2,11 @@ import React from 'react';
 import {Text} from 'react-native';
 import {recipes, categories, ingredients} from './dataArrays';
 
-
 interface Recipe {
   recipeId: number;
   title: string;
   categoryId: number;
-  ingredients: [number, number][]; ]
+  ingredients: [number, number][];
 }
 
 interface Ingredient {
@@ -16,14 +15,13 @@ interface Ingredient {
   photo_url: string;
 }
 
-export function getCategoryById(categoryId: number) {
-  let category;
-  categories.map(data => {
-    if (data.id === categoryId) {
-      category = data;
-    }
-  });
-  return category;
+interface Category {
+  id: number;
+  name: string;
+}
+
+export function getCategoryById(categoryId: number): Category | undefined {
+  return categories.find(category => category.id === categoryId);
 }
 
 export function getIngredientName(ingredientID: number) {
@@ -46,8 +44,8 @@ export function getIngredientUrl(ingredientID: number) {
   return url;
 }
 
-export function getCategoryName(categoryId: number) {
-  let name;
+export function getCategoryName(categoryId: number): string {
+  let name = '';
   categories.map(data => {
     if (data.id === categoryId) {
       name = data.name;
