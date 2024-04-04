@@ -7,6 +7,7 @@ import {
   IngredientsDetailScreen,
   RecipeScreen,
   RecipeListScreen,
+  SearchScreen,
 } from '../screens';
 
 interface AppNavigatorProps {
@@ -39,6 +40,7 @@ const AppNavigator: React.FC<AppNavigatorProps> = ({
         />
         <Stack.Screen name="Recipe" component={RecipeScreen} />
         <Stack.Screen name="RecipeListScreen" component={RecipeListScreen} />
+        <Stack.Screen name="SearchScreen" component={SearchScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
