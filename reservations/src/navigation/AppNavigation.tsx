@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import {
   HomeScreen,
   IngredientScreen,
@@ -8,41 +9,34 @@ import {
   RecipeScreen,
   RecipeListScreen,
   SearchScreen,
+  CategoriesScreen,
+  DrawerContainer,
 } from '../screens';
-
-interface AppNavigatorProps {
-  toggleDarkMode: () => void;
-  isDarkMode: boolean;
-}
 
 const Stack = createStackNavigator();
 
-const AppNavigator: React.FC<AppNavigatorProps> = ({
-  toggleDarkMode,
-  isDarkMode,
-}) => {
+const AppNavigator = () => {
   return (
-    <NavigationContainer independent={true}>
-      <Stack.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          headerShown: false,
-        }}>
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen name="IngredientScreen" component={IngredientScreen} />
-        <Stack.Screen
-          name="IngredientsDetailScreen"
-          component={IngredientsDetailScreen}
-        />
-        <Stack.Screen name="Recipe" component={RecipeScreen} />
-        <Stack.Screen name="RecipeListScreen" component={RecipeListScreen} />
-        <Stack.Screen name="SearchScreen" component={SearchScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator
+      screenOptions={{
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          textAlign: 'center',
+          alignSelf: 'center',
+          flex: 1,
+        },
+      }}>
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Categories" component={CategoriesScreen} />
+      <Stack.Screen name="Recipe" component={RecipeScreen} />
+      <Stack.Screen name="RecipesList" component={RecipeListScreen} />
+      <Stack.Screen name="Ingredient" component={IngredientScreen} />
+      <Stack.Screen name="Search" component={SearchScreen} />
+      <Stack.Screen
+        name="IngredientsDetails"
+        component={IngredientsDetailScreen}
+      />
+    </Stack.Navigator>
   );
 };
 
